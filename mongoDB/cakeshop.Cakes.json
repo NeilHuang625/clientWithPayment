@@ -1,0 +1,306 @@
+[{
+  "_id": {
+    "$oid": "67c574a8481564105405b880"
+  },
+  "CakeName": "Strawberry Fresh Cream",
+  "CakeDescription": "We're thrilled to announce the highly anticipated return of our seasonal Strawberry Fresh Cream cake! This mouthwatering dessert is a true delight, consisting of three layers of light and fluffy sponge cake, generously filled with a creamy blend of fresh cream and fruits. Topping it all off is our signature rich fresh cream icing, perfectly balanced with the sweetness of locally grown strawberries. Trust us, you won't want to pass up on this ultimate treat of the season. Get ready to indulge!",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/1_638766373041561010.jpeg",
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/44_638767087520963260.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "486d0c67-ba3f-4d3f-a837-ffedfa27b762",
+      "name": "小号",
+      "price": {
+        "$numberDecimal": "73"
+      }
+    },
+    {
+      "_id": "77ae732a-42ce-449a-a293-162231ee9961",
+      "name": "大号",
+      "price": {
+        "$numberDecimal": "83"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": true,
+  "IsAvailable": true,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745a"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c57561481564105405b886"
+  },
+  "CakeName": "Fresh Blueberry",
+  "CakeDescription": "Three layers of delicate light sponge filled with our special blueberry yoghurt cream and fresh fruit for the best flavour. Topped with fresh seasonal blueberries with a fine dusting of icing sugar to finish.\r\n\r\nContains: Egg, gluten (wheat), milk & soy.\r\nProcessed in the same facility as products containing peanuts, sesame and tree nuts.",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/2_638766374899792690.jpeg",
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/22_638766374903619830.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "3906fa58-3147-48ca-baba-d8edccb09d51",
+      "name": "小号",
+      "price": {
+        "$numberDecimal": "73"
+      }
+    },
+    {
+      "_id": "7dacf642-06e2-422d-9ef8-b15181b6059a",
+      "name": "大号",
+      "price": {
+        "$numberDecimal": "87"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": true,
+  "IsAvailable": true,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745a"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c57590481564105405b88d"
+  },
+  "CakeName": "Kids Chocolate Cake",
+  "CakeDescription": "Our popular chocolate cake for kids is made up of 3 layers of chocolate sponge and ganache, surrounded by kit kat pieces and topped with an arrangement of sweet treats that all the kids will love.\r\n\r\nContains: Egg, wheat, barley, gluten, milk, soy, nuts.\r\nMay contain peanuts, sesame, tree nuts.",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/3_638766375368377870.jpeg",
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/33_638766375372334580.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "d5869bdd-b8b1-4460-93f3-78b5e6d23056",
+      "name": "小号",
+      "price": {
+        "$numberDecimal": "88"
+      }
+    },
+    {
+      "_id": "c09086da-68eb-4cdf-b287-9d25e1ccef5d",
+      "name": "大号",
+      "price": {
+        "$numberDecimal": "105"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": false,
+  "IsAvailable": true,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745a"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c575d1481564105405b897"
+  },
+  "CakeName": "Mango Fresh Cream",
+  "CakeDescription": "A light sponge cake, with three layers of mango fresh cream. Surrounded in freshly whipped cream and a sweet mango glaze, topped with Mango glaze droplets and a hand crafted white chocolate feather.\r\n\r\nContains: Egg, wheat, gluten, milk.\r\nMay contain peanuts, sesame, soy, tree nuts.",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/4_638766376023512010.jpeg",
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/44_638766376018980580.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "7c1b8fd0-fb5f-4b86-aeeb-1632381f1dfc",
+      "name": "小号",
+      "price": {
+        "$numberDecimal": "73"
+      }
+    },
+    {
+      "_id": "b4a3bc9a-752c-4fc4-ab50-6f3131a88938",
+      "name": "大号",
+      "price": {
+        "$numberDecimal": "87"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": false,
+  "IsAvailable": true,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745a"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c5761b481564105405b8a4"
+  },
+  "CakeName": "Cookies and Cream",
+  "CakeDescription": "Bringing together the delicious flavours of cookies and cream in a Gateau House styled Cookies and Cream Cake. Made with layers of our signature plain white sponge, separated by a delicious layer of mixed cookies and 100% fresh cream, topped with a generous coating of cookies crumbs and our edible chocolate logo to finish.\r\n\r\nContains: Egg, wheat, gluten, milk, soy.\r\nMay contain peanuts, sesame, tree nuts.",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/5_638766376754467480.jpeg",
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/55_638766376758388570.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "ced157ba-75c8-4d58-ac32-34f17a3c60f7",
+      "name": "小号",
+      "price": {
+        "$numberDecimal": "66"
+      }
+    },
+    {
+      "_id": "b62bd8d7-049e-4c31-93e5-d85324042b54",
+      "name": "大号",
+      "price": {
+        "$numberDecimal": "87"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": true,
+  "IsAvailable": true,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745a"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c5764c481564105405b8b4"
+  },
+  "CakeName": "Mango Mousse Cake",
+  "CakeDescription": "A layer of passionfruit jelly and dacquoise surrounded by 2 layers of mango mousse sitting on top of a light sponge base. Finished with a glossy mango glaze and decorated with hand crafted chocolates, raspberry drizzle and a chocolate mousse quenelle.\r\n\r\nContains: Almond, egg, wheat, gluten, milk, soy.\r\nMay contain peanuts, sesame, tree nuts.",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/6_638766377248221770.jpeg",
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/66_638766377251974340.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "6b5f03e0-b724-414a-b846-223320967798",
+      "name": "小号",
+      "price": {
+        "$numberDecimal": "73"
+      }
+    },
+    {
+      "_id": "2a4d9cb4-b98b-4c89-819b-9ec24aca4c72",
+      "name": "大号",
+      "price": {
+        "$numberDecimal": "87"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": false,
+  "IsAvailable": true,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745a"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c57678481564105405b8c7"
+  },
+  "CakeName": "Passionfruit & Mango Petit",
+  "CakeDescription": "Mango jelly is placed inside the rich passionfruit mousse on a white sponge base. Finished with sprayed yellow chocolate and hand crafted chocolates.\r\n\r\nContains: Egg, wheat, gluten, milk, soy.\r\nMay contain peanuts, sesame, tree nuts.",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/7_638766377689480920.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "dbe0d5ce-3d6b-4ee5-aa4d-a32939ce572e",
+      "name": "小号",
+      "price": {
+        "$numberDecimal": "13"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": false,
+  "IsAvailable": true,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745b"
+  }
+},
+{
+  "_id": {
+    "$oid": "67c576a8481564105405b8dd"
+  },
+  "CakeName": "Tiramisu Mousse Cake",
+  "CakeDescription": "A traditional Italian style Tiramisu cake with a twist. The mousse itself is composed of the best cream cheese in store, creme anglaise and with a coffee sponge base baked with rich Irish coffee liquer. For the finishing touch, all flavours is locked in with a mixed spray coating of milk and dark chocolate. It does'nt get any better than this.\r\n\r\nContains Caffeine.\r\nContains: Egg, wheat, gluten, milk, sulphites.\r\nMay contain peanuts, sesame, tree nuts.",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/8_638766378160702520.jpeg",
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/88_638766378163035420.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "be6aca65-c435-4eeb-9c82-10420e056ef3",
+      "name": "小号",
+      "price": {
+        "$numberDecimal": "73"
+      }
+    },
+    {
+      "_id": "b2a99391-c84d-4000-b578-67e15e074164",
+      "name": "大号",
+      "price": {
+        "$numberDecimal": "87"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": false,
+  "IsAvailable": true,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745a"
+  }
+},
+{
+  "_id": {
+    "$oid": "67dfda327b3ea69f058908bb"
+  },
+  "CakeName": "Kids Chocolate Cake",
+  "CakeDescription": "zz",
+  "CakeImages": [
+    "https://pub-30093c32a1b34bbba5e4cc060ce37e54.r2.dev/22_638783672341001550.jpeg"
+  ],
+  "CakeOptions": [
+    {
+      "_id": "77a74559-0d02-4178-a380-77204103af99",
+      "name": "Small",
+      "price": {
+        "$numberDecimal": "100"
+      }
+    },
+    {
+      "_id": "1cb1de8a-e7fc-4168-bd98-9ce31cf0f65c",
+      "name": "Large",
+      "price": {
+        "$numberDecimal": "200"
+      }
+    }
+  ],
+  "UserId": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "IsPromoted": false,
+  "IsAvailable": false,
+  "CategoryId": {
+    "$oid": "67e3af9242378ea534fb745a"
+  }
+}]

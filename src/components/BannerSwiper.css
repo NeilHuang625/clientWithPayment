@@ -1,0 +1,40 @@
+.banner-swiper {
+  width: 100%;
+  height: 300px;
+}
+
+@media (max-width: 640px) {
+  .banner-swiper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.banner-swiper swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  overflow: hidden;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-swiper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #f59e0b !important; /* amber-500 */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #d97706 !important; /* darker amber for hover effect */
+}

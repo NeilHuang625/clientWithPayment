@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "67c96f84842c7b63b1e22b06"
+  },
+  "userId": "67c26aaf253452f99e3eaa53",
+  "cakeId": "67c5764c481564105405b8b4",
+  "quantity": 1,
+  "optionId": "6b5f03e0-b724-414a-b846-223320967798"
+},
+{
+  "_id": {
+    "$oid": "67ca0360842c7b63b1e22c99"
+  },
+  "userId": "67c26aaf253452f99e3eaa53",
+  "cakeId": "67c5761b481564105405b8a4",
+  "quantity": 1,
+  "optionId": "ced157ba-75c8-4d58-ac32-34f17a3c60f7"
+},
+{
+  "_id": {
+    "$oid": "67ca036e842c7b63b1e22c9c"
+  },
+  "userId": "67c26aaf253452f99e3eaa53",
+  "cakeId": "67c576a8481564105405b8dd",
+  "quantity": 1,
+  "optionId": "b2a99391-c84d-4000-b578-67e15e074164"
+}]

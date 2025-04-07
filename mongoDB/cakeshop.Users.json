@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "67c269a43f6d0a881d20f40f"
+  },
+  "username": "neil618",
+  "email": "neiltang618@gmail.com",
+  "phoneNumber": "0298889889",
+  "address": "",
+  "passwordHash": "$2a$11$RNRnCl4Rb6ZqmJCwJTy7gO1VIu1gyjV1ibXJHU4ob6DKihuEd05xC",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "67c26aaf253452f99e3eaa53"
+  },
+  "username": "admin",
+  "email": "admin@gmail.com",
+  "phoneNumber": "0298889889",
+  "address": "",
+  "passwordHash": "$2a$11$ikeKgyIQMGe6LuAy0kH5su2r5xYwgce32SJHRVBUIGFVqdUPu1zYO",
+  "role": "admin"
+},
+{
+  "_id": {
+    "$oid": "67c26ad3253452f99e3eaa54"
+  },
+  "username": "hello",
+  "email": "user@gmail.com",
+  "phoneNumber": "0298889889",
+  "address": "",
+  "passwordHash": "$2a$11$ZnMPSl4UckiwOUj0P1tWgOM7TZfGvM.dhLcFFcff.kxkV0kXJ7vh6",
+  "role": "user"
+}]

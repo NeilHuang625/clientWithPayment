@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "67e3af9242378ea534fb745a"
+  },
+  "CategoryName": "Cake"
+},
+{
+  "_id": {
+    "$oid": "67e3af9242378ea534fb745b"
+  },
+  "CategoryName": "Desserts&Snacks"
+}]
