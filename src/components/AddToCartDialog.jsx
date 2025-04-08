@@ -10,11 +10,10 @@ import { AuthContext } from "../contexts/AuthProvider";
 import CartContext from "../contexts/CartContext";
 import FlyToCartAnimation from "./FlyToCartAnimation";
 import CartIconContext from "../contexts/CartIconContext";
-import { createOrder } from "../services/apiOrder";
-import OrderContext from "../contexts/OrderProvider";
 import { useNavigate } from "react-router-dom";
 import MessagePopup from "./MessagePopup";
 import { LuMessageSquareWarning } from "react-icons/lu";
+import { createPaymentSession } from "../services/apiPayment";
 
 const AddToCartDialog = ({ open, handleClose, cake }) => {
   const [quantity, setQuantity] = useState(1);
@@ -24,11 +23,11 @@ const AddToCartDialog = ({ open, handleClose, cake }) => {
 
   const [messagePopupOpen, setMessagePopupOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { user, jwt, isAuthenticated } = useContext(AuthContext);
   const { carts, setCarts } = useContext(CartContext);
   const { cartIconRef, addToCartDialogImageRef } = useContext(CartIconContext);
-  const { setOrders } = useContext(OrderContext);
   const navigate = useNavigate();
 
   const handleOptionChange = (event, value) => {
@@ -103,28 +102,40 @@ const AddToCartDialog = ({ open, handleClose, cake }) => {
       return;
     }
 
-    const newOrder = {
-      userId: user.id,
-      orderItems: [
-        {
-          cakeId: cake.id,
-          quantity,
-          cakeImage: cake.cakeImages[0],
-          cakeName: cake.cakeName,
-          cakePrice: selectedOption.price,
-          optionId: selectedOption.id,
-          cakeSize: selectedOption.name,
-        },
-      ],
-    };
+    setIsLoading(true);
 
-    const result = await createOrder(newOrder, jwt);
-    if (result.success) {
-      const newOrder = result.data;
-      setOrders((prevOrders) => [...prevOrders, newOrder]);
-      navigate(`/orders/${newOrder.id}`);
-    } else {
-      console.error("Error:", result.message);
+    try {
+      const newOrder = {
+        userId: user.id,
+        orderItems: [
+          {
+            cakeId: cake.id,
+            quantity,
+            cakeImage: cake.cakeImages[0],
+            cakeName: cake.cakeName,
+            cakePrice: selectedOption.price,
+            optionId: selectedOption.id,
+            cakeSize: selectedOption.name,
+          },
+        ],
+      };
+
+      const result = await createPaymentSession(newOrder, jwt);
+
+      if (result.success) {
+        // Redirect to Stripe checkout page
+        window.location.href = result.data.url;
+      } else {
+        setMessage("Failed to create payment session. Please try again.");
+        setMessagePopupOpen(true);
+        console.error("Error:", result.message);
+      }
+    } catch (error) {
+      setMessage("Failed to create payment session. Please try again.");
+      setMessagePopupOpen(true);
+      console.error("Error:", error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -203,6 +214,7 @@ const AddToCartDialog = ({ open, handleClose, cake }) => {
 
               <div className="mt-2 flex gap-4">
                 <button
+                  disabled={isLoading}
                   onClick={handleAddToCart}
                   className="flex items-center justify-center gap-1 rounded-xl border border-gray-200 px-6 py-3 text-sm transition-all duration-200 hover:cursor-pointer hover:border-amber-600/50 hover:text-amber-600"
                 >
@@ -210,11 +222,12 @@ const AddToCartDialog = ({ open, handleClose, cake }) => {
                   Add to Cart
                 </button>
                 <button
+                  disabled={isLoading}
                   onClick={handleCheckOut}
                   className="flex items-center justify-center gap-1 rounded-xl bg-amber-500 px-6 py-3 text-sm text-white transition-all duration-200 hover:cursor-pointer hover:bg-amber-600"
                 >
                   <IoBagCheckOutline className="h-4.5 w-4.5" />
-                  Check it Out
+                  {isLoading ? "Processing..." : "Proceed to Payment"}
                 </button>
               </div>
             </div>

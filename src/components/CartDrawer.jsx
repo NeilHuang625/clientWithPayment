@@ -9,13 +9,12 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { createOrder } from "../services/apiOrder";
-import { useContext, useState } from "react";
-import OrderContext from "../contexts/OrderProvider";
 import { deleteAllCartsByUserId } from "../services/apiCart";
 import { useNavigate } from "react-router-dom";
 import { isCakeAvailable } from "../utils";
 import MUIPopup from "./MUIPopup";
+import { createPaymentSession } from "../services/apiPayment";
+import { useState } from "react";
 
 export default function CartDrawer({
   open,
@@ -26,17 +25,17 @@ export default function CartDrawer({
   cakes,
   user,
 }) {
-  const { setOrders } = useContext(OrderContext);
   const navigate = useNavigate();
 
   const [openPopup, setOpenPopup] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const totalPrice = carts.reduce(
     (acc, cart) => acc + cart.quantity * cart.cakePrice,
     0,
   );
 
-  const handleProcessOrder = async () => {
+  const handleCheckOut = async () => {
     // Check if there is any unavailable cake in the cart
     if (
       carts.some((cart) => isCakeAvailable(user.role, cakes, cart) === false)
@@ -46,33 +45,40 @@ export default function CartDrawer({
       return;
     }
 
-    const newOrder = {
-      userId: carts[0].userId,
-      orderItems: carts.map((cart) => ({
-        cakeId: cart.cakeId,
-        cakeName: cart.cakeName,
-        cakeImage: cart.cakeImage,
-        cakePrice: cart.cakePrice,
-        cakeSize: cart.cakeSize,
-        optionId: cart.optionId,
-        quantity: cart.quantity,
-      })),
-    };
+    setIsLoading(true);
 
-    const result = await createOrder(newOrder, jwt);
-    if (result.success) {
-      const newOrder = result.data;
-      setOrders((prevOrders) => [...prevOrders, newOrder]);
-      const res = await deleteAllCartsByUserId(carts[0].userId, jwt);
-      if (res.success) {
-        setCarts([]);
-        navigate(`/orders/${newOrder.id}`);
-        toggleDrawer(false)();
+    try {
+      const newOrder = {
+        userId: carts[0].userId,
+        orderItems: carts.map((cart) => ({
+          cakeId: cart.cakeId,
+          cakeName: cart.cakeName,
+          cakeImage: cart.cakeImage,
+          cakePrice: cart.cakePrice,
+          cakeSize: cart.cakeSize,
+          optionId: cart.optionId,
+          quantity: cart.quantity,
+        })),
+      };
+
+      const result = await createPaymentSession(newOrder, jwt);
+
+      if (result.success) {
+        const res = await deleteAllCartsByUserId(carts[0].userId, jwt);
+        if (res.success) {
+          setCarts([]);
+          // Redirect to Stripe checkout page
+          window.location.href = result.data.url;
+        } else {
+          console.log(res);
+        }
       } else {
-        console.log(res);
+        console.error("Error:", result.message);
       }
-    } else {
-      console.log(result);
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -143,6 +149,7 @@ export default function CartDrawer({
         }}
       >
         <button
+          disabled={isLoading}
           onClick={() => {
             navigate("/cakes");
             toggleDrawer(false)();
@@ -153,8 +160,8 @@ export default function CartDrawer({
           <p>Continue Shopping</p>
         </button>
         <button
-          disabled={carts.length === 0}
-          onClick={handleProcessOrder}
+          disabled={carts.length === 0 || isLoading}
+          onClick={handleCheckOut}
           className={`flex items-center justify-center gap-1 rounded-full bg-amber-500 px-6 py-2.5 text-sm text-white shadow-xl transition-all duration-200 ${carts.length === 0 ? "hover:cursor-not-allowed" : "hover:cursor-pointer hover:bg-amber-600"} `}
         >
           <IoBagCheckOutline className="h-5 w-5" />

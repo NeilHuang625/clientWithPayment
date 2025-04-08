@@ -106,7 +106,6 @@ const CakeOptions = ({ cake }) => {
     setIsLoading(true);
 
     try {
-      // Create a payment session with Stripe
       const orderData = {
         orderItems: [
           {
