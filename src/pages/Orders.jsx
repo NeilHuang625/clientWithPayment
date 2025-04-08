@@ -6,6 +6,7 @@ import { MdOutlinePending } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
+import { getOrderTotal } from "../utils";
 
 const Orders = () => {
   const { orders } = useContext(OrderContext);
@@ -16,13 +17,6 @@ const Orders = () => {
   const ordersToShow = isAdmin
     ? orders.filter((order) => order.userId === user.id)
     : orders;
-
-  const getOrderTotal = (order) => {
-    return order.orderItems.reduce(
-      (acc, orderItem) => acc + orderItem.cakePrice * orderItem.quantity,
-      0,
-    );
-  };
 
   return (
     <>

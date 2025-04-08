@@ -7,6 +7,13 @@ export const isCakeAvailable = (userRole, cakes, item) => {
   }
 };
 
+export const getOrderTotal = (order) => {
+  return order.orderItems.reduce(
+    (acc, orderItem) => acc + orderItem.cakePrice * orderItem.quantity,
+    0,
+  );
+};
+
 export function openSidebar() {
   if (typeof window !== "undefined") {
     document.body.style.overflow = "hidden";
@@ -33,3 +40,65 @@ export function toggleSidebar() {
     }
   }
 }
+
+/**
+ * 格式化货币金额
+ * @param {number} amount - 金额
+ * @param {string} currency - 货币代码 (默认为 'NZD')
+ * @returns {string} 格式化后的货币字符串
+ */
+export const formatCurrency = (amount, currency = "NZD") => {
+  // 如果金额无效，显示为 N/A
+  if (amount === undefined || amount === null) {
+    return "N/A";
+  }
+
+  return new Intl.NumberFormat("en-NZ", {
+    style: "currency",
+    currency: currency,
+    minimumFractionDigits: 2,
+  }).format(amount);
+};
+
+/**
+ * 格式化日期
+ * @param {string|Date} dateString - 日期字符串或日期对象
+ * @returns {string} 格式化后的日期字符串
+ */
+export const formatDate = (dateString) => {
+  // 如果日期无效，显示为 N/A
+  if (!dateString) {
+    return "N/A";
+  }
+
+  try {
+    return new Date(dateString).toLocaleDateString("en-NZ", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch (error) {
+    console.error("Date formatting error:", error);
+    return "Invalid date";
+  }
+};
+
+/**
+ * 格式化地址为新西兰格式
+ * @param {Object} address - 地址对象
+ * @returns {string} 格式化后的地址字符串
+ */
+export const formatNZAddress = (address) => {
+  if (!address) return "No address provided";
+
+  const { street, suburb, city, postalCode } = address;
+  let formattedAddress = "";
+
+  if (street) formattedAddress += street;
+  if (suburb) formattedAddress += formattedAddress ? `, ${suburb}` : suburb;
+  if (city) formattedAddress += formattedAddress ? `, ${city}` : city;
+  if (postalCode)
+    formattedAddress += formattedAddress ? ` ${postalCode}` : postalCode;
+
+  return formattedAddress || "No address provided";
+};
