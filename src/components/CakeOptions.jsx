@@ -10,21 +10,23 @@ import { AuthContext } from "../contexts/AuthProvider";
 import { createCart } from "../services/apiCart";
 import CartIconContext from "../contexts/CartIconContext";
 import FlyToCartAnimation from "./FlyToCartAnimation";
-import { createOrder } from "../services/apiOrder";
+// import { createOrder } from "../services/apiOrder";
 import { useNavigate } from "react-router-dom";
-import OrderContext from "../contexts/OrderProvider";
+// import OrderContext from "../contexts/OrderProvider";
 import MessagePopup from "./MessagePopup";
+import { createPaymentSession } from "../services/apiPayment";
 
 const CakeOptions = ({ cake }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedOption, setSelectedOption] = useState(cake.cakeOptions[0]);
   const { carts, setCarts } = useContext(CartContext);
-  const { setOrders } = useContext(OrderContext);
+  // const { setOrders } = useContext(OrderContext);
   const { user, jwt, isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [messagePopupOpen, setMessagePopupOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { cartIconRef, cakeDetailPageImageRef } = useContext(CartIconContext);
   const [flyingItem, setFlyingItem] = useState(null);
@@ -101,32 +103,41 @@ const CakeOptions = ({ cake }) => {
       return;
     }
 
-    const newOrder = {
-      userId: user.id,
-      orderItems: [
-        {
-          cakeId: cake.id,
-          cakeName: cake.cakeName,
-          cakeImage: cake.cakeImages[0],
-          cakePrice: selectedOption.price,
-          cakeSize: selectedOption.name,
-          optionId: selectedOption.id,
-          quantity,
-        },
-      ],
-    };
+    setIsLoading(true);
 
-    const result = await createOrder(newOrder, jwt);
-    if (result.success) {
-      const createdOrder = result.data;
-      console.log("Order created:", createdOrder);
-      setOrders((prevOrders) => {
-        console.log("prevOrders", prevOrders);
-        return [...prevOrders, createdOrder];
-      });
-      navigate(`/orders/${createdOrder.id}`);
-    } else {
-      console.error("Error:", result.message);
+    try {
+      // Create a payment session with Stripe
+      const orderData = {
+        orderItems: [
+          {
+            cakeId: cake.id,
+            cakeName: cake.cakeName,
+            cakeImage: cake.cakeImages[0],
+            cakePrice: selectedOption.price,
+            cakeSize: selectedOption.name,
+            optionId: selectedOption.id,
+            quantity,
+          },
+        ],
+        userId: user.id,
+      };
+
+      const result = await createPaymentSession(orderData, jwt);
+
+      if (result.success) {
+        // Redirect to Stripe checkout page
+        window.location.href = result.data.url;
+      } else {
+        setMessage("Failed to create payment session. Please try again.");
+        setMessagePopupOpen(true);
+        console.error("Error:", result.message);
+      }
+    } catch (error) {
+      setMessage("An error occurred. Please try again later.");
+      setMessagePopupOpen(true);
+      console.error("Payment error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -163,16 +174,18 @@ const CakeOptions = ({ cake }) => {
         <button
           onClick={handleAddToCart}
           className="flex items-center justify-center gap-1 rounded-xl border border-gray-200 px-6 py-3 text-sm transition-all duration-200 hover:cursor-pointer hover:bg-gray-100"
+          disabled={isLoading}
         >
           <RiShoppingCartLine className="h-4.5 w-4.5" />
           Add to Cart
         </button>
         <button
           onClick={handleCheckOut}
-          className="flex items-center justify-center gap-1 rounded-xl bg-amber-500 px-6 py-3 text-sm text-white transition-all duration-200 hover:cursor-pointer hover:bg-amber-600"
+          className="flex items-center justify-center gap-1 rounded-xl bg-amber-500 px-6 py-3 text-sm text-white transition-all duration-200 hover:cursor-pointer hover:bg-amber-600 disabled:bg-gray-400"
+          disabled={isLoading}
         >
           <IoBagCheckOutline className="h-4.5 w-4.5" />
-          Check it Out
+          {isLoading ? "Processing..." : "Proceed to Payment"}
         </button>
       </div>
 

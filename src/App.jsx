@@ -20,6 +20,7 @@ import { OrderProvider } from "./contexts/OrderProvider";
 import Orders from "./pages/Orders";
 import OrderDetail from "./pages/OrderDetail";
 import CustomerOrder from "./pages/CustomerOrder";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 
 const App = () => {
   return (
@@ -90,6 +91,14 @@ const App = () => {
                       element={
                         <PrivateRoute requiredRoles={["admin"]}>
                           <CustomerOrder />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/payment/success"
+                      element={
+                        <PrivateRoute>
+                          <PaymentSuccessPage />
                         </PrivateRoute>
                       }
                     />
